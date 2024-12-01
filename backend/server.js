@@ -12,17 +12,17 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 app.use("/api/coursepage", courseRoutes);
 
-// if(process.env.NODE_ENV === 'production'){
-//     app.use(express.static(path.join(__dirname, "/fronten/build")));
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, "/frontend/build")));
 
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.resolve(__dirname, "fronten","build","index.html"));
-//     })
-// }
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend","build","index.html"));
+    })
+}
 
 app.listen(PORT, () => {
     connectDB();
